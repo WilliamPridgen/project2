@@ -27,43 +27,61 @@ import java.util.Random;
     @Component
     public class ScheduledTasks {
 
+        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+
         RestTemplate restTemplate = new RestTemplate();
 
-        @Scheduled(fixedRate = 3000)
+        @Scheduled(fixedRate = 2000)
         public void addVehicle() {
             String url = "http://localhost:8090/addVehicle";
             Vehicle newVehicle = new Vehicle(RandomStringUtils.randomAlphabetic(10),
                     RandomUtils.nextInt(1986, 2016), RandomUtils.nextInt(15000, 45000));
             restTemplate.postForObject(url, newVehicle, Vehicle.class);
+            vehicleList.add(newVehicle);
+            System.out.println("ADD");
+            getLatestVehicles();
+            System.out.println();
+
+
         }
 
-       @Scheduled(fixedRate = 3000)
+       @Scheduled(fixedRate = 7000)
         public void deleteVehicle() {
-            int randID = RandomUtils.nextInt(1, 20);
+           Random r = new Random();
+           int randID = r.nextInt((20 - 1) + 1) + 1;
             String url = "http://localhost:8090/deleteVehicle/" + randID;
-            restTemplate.delete(url);
-        }
+           restTemplate.delete(url);
+           System.out.println("DELETE");
+           getLatestVehicles();
+           System.out.println();
 
-        @Scheduled(fixedRate = 4000)
+
+
+       }
+
+        @Scheduled(fixedRate = 10000)
         public void updateVehicle() {
-            String url = "http://localhost:8090/updateVehicle";
-            int randID = RandomUtils.nextInt(1, 20);
-            Vehicle newVehicle = new Vehicle(randID, RandomStringUtils.randomAlphabetic(10),
-                    RandomUtils.nextInt(1986, 2016), RandomUtils.nextInt(15000, 45000));
-            restTemplate.put(url, newVehicle);
+            Random r = new Random();
+                int randID = r.nextInt(( 4- 1) + 1) + 1;
+            String url = "http://localhost:8090/updateVehicle/" + randID;
+            Vehicle newVehicle = new Vehicle(randID,"Changed Vehicle",2019, RandomUtils.nextInt(15000, 45000));
+                restTemplate.put(url,newVehicle);
+            System.out.println("UPDATE");
+            getLatestVehicles();
+            System.out.println();
 
-        /*
-        String getUrl = "http://localhost:8080/getVehicle/" + randID;
-        Vehicle v = restTemplate.getForObject(getUrl, Vehicle.class);
-        System.out.println(v);*/
         }
 
-        @Scheduled(cron="0 0 * * * *")
+        @Scheduled(cron ="0 * * * *")
         public void getLatestVehicles() {
             String getUrl = "http://localhost:8090/getLatestVehicles";
             List<Vehicle> vehicles = restTemplate.getForObject(getUrl, List.class);
+            System.out.println();
+            System.out.println("LAST VEHICLES");
             for (int i = vehicles.size() - 1; i >= 0; i--) {
-                System.out.println(vehicles.get(i));
-            }
+                    System.out.println(vehicles.get(i));
+
+                }
+
         }
     }
