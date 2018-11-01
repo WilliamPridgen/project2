@@ -72,7 +72,7 @@ import java.util.Random;
 
         }
 
-        @Scheduled(cron ="0 * * * *")
+        @Scheduled(cron ="0 * * * * *")
         public void getLatestVehicles() {
             String getUrl = "http://localhost:8090/getLatestVehicles";
             List<Vehicle> vehicles = restTemplate.getForObject(getUrl, List.class);
