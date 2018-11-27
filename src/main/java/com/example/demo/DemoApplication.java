@@ -8,10 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.concurrent.Executor;
 
-@SpringBootApplication
 @EnableScheduling
+@SpringBootApplication
 public class DemoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
