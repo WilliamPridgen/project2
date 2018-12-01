@@ -11,11 +11,11 @@ import java.util.Random;
 
 @Component
 public class ScheduledTasks {
-
+/*
     List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
     RestTemplate restTemplate = new RestTemplate();
-    @Timed
+
     //@Scheduled(fixedRate = 2000)
     public void addVehicle() {
         String url = "http://localhost:8090/addVehicle";
@@ -29,12 +29,12 @@ public class ScheduledTasks {
 
 
     }
-    @Timed
+
     //@Scheduled(fixedRate = 7000)
     public void deleteVehicle() {
         Random r = new Random();
-        int randID = r.nextInt((20 - 1) + 1) + 1;
-        String url = "http://localhost:8090/deleteVehicle/" + randID;
+        int id = r.nextInt((20 - 1) + 1) + 1;
+        String url = "http://localhost:8090/deleteVehicle/" + id;
         restTemplate.delete(url);
         System.out.println("DELETE");
         getLatestVehicles();
@@ -43,21 +43,21 @@ public class ScheduledTasks {
 
 
     }
-    @Timed
+
     //@Scheduled(fixedRate = 10000)
     public void updateVehicle() {
         Random r = new Random();
-        int randID = r.nextInt(( 4- 1) + 1) + 1;
-        String url = "http://localhost:8090/updateVehicle/" + randID;
-        Vehicle newVehicle = new Vehicle(randID,"Changed Vehicle",2019, RandomUtils.nextInt(15000, 45000));
+        int id = r.nextInt(( 4- 1) + 1) + 1;
+        String url = "http://localhost:8090/updateVehicle/" + id;
+        Vehicle newVehicle = new Vehicle(id,"Changed Vehicle",2019, RandomUtils.nextInt(15000, 45000));
         restTemplate.put(url,newVehicle);
         System.out.println("UPDATE");
         getLatestVehicles();
         System.out.println();
 
     }
-    @Timed
-    //@Scheduled(cron ="0 * * * * *")
+
+   // @Scheduled(cron ="0 * * * * *")
     public void getLatestVehicles() {
         String getUrl = "http://localhost:8090/getLatestVehicles";
         List<Vehicle> vehicles = restTemplate.getForObject(getUrl, List.class);
@@ -69,15 +69,15 @@ public class ScheduledTasks {
         }
     }
 
-    @Timed
-    @Scheduled(fixedRate = 10000)
+
+    //@Scheduled(fixedRate = 10000)
     public void sellVehicle() {
         Random r = new Random();
-        int randID = r.nextInt(( 4- 1) + 1) + 1;
-        String url = "http://localhost:8090/sellVehicle/" + randID;
-        Vehicle newVehicle = new Vehicle(randID,"SOLD",2019, RandomUtils.nextInt(15000, 45000));
+        int id = r.nextInt(( 4- 1) + 1) + 1;
+        String url = "http://localhost:8090/sellVehicle/" + id;
+        Vehicle newVehicle = new Vehicle(id,"SOLD",2019, RandomUtils.nextInt(15000, 45000));
         restTemplate.put(url,newVehicle);
         System.out.println("SOLD UPDATE");
         System.out.println();
-    }
+    }*/
 }

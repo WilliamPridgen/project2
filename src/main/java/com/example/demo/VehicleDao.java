@@ -47,12 +47,12 @@ public class VehicleDao {
     }
 
     public List<Vehicle> getLatestVehicles() {
-        List<Vehicle> lastVehicles = new ArrayList<Vehicle>();
-            String queryStr = "SELECT * FROM vehicles ORDER BY id DESC LIMIT 10";
-            Query query = entityManager.createNativeQuery(queryStr, Vehicle.class);
-            lastVehicles = query.getResultList();
-        if(lastVehicles.size()<=10) {
-            return lastVehicles;
+        List<Vehicle> latest = new ArrayList<Vehicle>();
+            String str = "SELECT * FROM vehicles ORDER BY id DESC LIMIT 10";
+            Query query = entityManager.createNativeQuery(str, Vehicle.class);
+            latest = query.getResultList();
+        if(latest.size()<=10) {
+            return latest;
         }else{
             System.out.print("There aren't enough vehicles in your database to execute this action");
         }
