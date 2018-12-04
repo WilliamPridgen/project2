@@ -24,10 +24,10 @@ public class RESTController {
     private EventDao eventDao = new EventDao();
 
 
-    private static String consumerKeyStr = "tTWmHjntTtuvjqfTguxiqj8Ui";
-    private static String consumerSecretStr = "zDmZbsuqVjQKXTSymtriLZNV8ATNgY4nCosptqxplKdcudcgkk";
-    private static String accessTokenStr = "37442729-pOKHLPydB9ECRYaBjbVUD6SBy3GNtmJuHKBnbGfyM";
-    private static String accessTokenSecretStr = "hWZVNKidg8dl5iaArGrKO2V0bbCzAV6t11HTqyTfJgtKQ";
+    private static String consumerKeyStr = "";
+    private static String consumerSecretStr = "";
+    private static String accessTokenStr = "";
+    private static String accessTokenSecretStr = "";
 
     RestTemplate restTemplate = new RestTemplate();
     int i = 0;
